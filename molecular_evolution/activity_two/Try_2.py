@@ -103,7 +103,7 @@ def get_genotypic_frequencies(sequences, position):
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed genotype numbers (number of individuals) here
-    print("Observed genotype numbers: " + str(total_genotypes) + "this # is still wrong")
+    print("Observed genotype numbers: " + str(genotypes))
     # -------------------------------------------------------------------------
     # *************************************************************************
 
@@ -157,14 +157,14 @@ def calculate_expected_genotypic_frequencies(allele_freqs, n):
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed genotype numbers (number of individuals) here
-    print("text for printing observed genotype numbers")
+    print("Expected genotype numbers: ")
     # -------------------------------------------------------------------------
     # *************************************************************************
 
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed genotype frequencies here
-    print("text for printing observed genotype frequencies")
+    print("Expected genotype frequencies: ")
     # -------------------------------------------------------------------------
     # *************************************************************************
 

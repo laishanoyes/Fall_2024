@@ -55,10 +55,8 @@ def parse_fasta(fasta_file):
             sequences.append(seq)
     return sequences  # Return the list of sequences
 
-# -------------------------------------------------------------------------
 
 # Function to calculate allele frequencies at a specified position
-# *** YOU NEED TO PRINT THE OBSERVED ALLELE FREQUENCIES *** #
 def get_allele_frequencies(sequences, position):
     alleles = {}  # Initialize a dictionary to count alleles
     for seq in sequences:  # Iterate through each sequence
@@ -76,15 +74,17 @@ def get_allele_frequencies(sequences, position):
                 alleles[allele] = 1  # Initialize the count for this allele
     total_alleles = sum(alleles.values())  # Calculate the total number of alleles
     frequencies = {allele: count / total_alleles for allele, count in alleles.items()}  # Calculate the frequency for each allele
+
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the observed allele frequencies here
+    print("text for printing observed allele frequencies")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
+
     return frequencies  # Return the dictionary of allele frequencies
 
-    # *** print observed allele frequencies
-
-
-# -------------------------------------------------------------------------
-
 # Function to calculate observed genotypic frequencies
-# *** YOU NEED TO PRINT THE OBSERVED GENOTYPIC FREQUENCIES *** #
 def get_genotypic_frequencies(sequences, position):
     genotypes = {}  # Initialize a dictionary to count genotypes
     for seq in sequences:  # Iterate through each sequence
@@ -100,18 +100,24 @@ def get_genotypic_frequencies(sequences, position):
     total_genotypes = sum(genotypes.values())  # Calculate the total number of genotypes
     frequencies = {genotype: count / total_genotypes for genotype, count in genotypes.items()}  # Calculate the frequency for each genotype
 
-    # *** print observed number of each genotype (raw number)
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the observed genotype numbers (number of individuals) here
+    print("text for printing observed genotype numbers")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
 
-    # *** print observed genotypic frequencies
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the observed genotype frequencies here
+    print("text for printing observed genotype frequencies")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
 
     return genotypes, frequencies  # Return the dictionary of genotypes and their frequencies
 
-# -------------------------------------------------------------------------
 
 # Function to calculate expected genotypic frequencies based on allele frequencies
-# *** THERE ARE TWO 'BUGS' IN THE FOLLOWING FUNCTION *** #
-## **** It is your job to find them and fix them! **** ##
-# *** YOU NEED TO PRINT THE EXPECTED GENOTYPES (raw number) AND THEIR FREQUENCIES *** #
 def calculate_expected_genotypic_frequencies(allele_freqs, n):
     # Extract the present alleles and their frequencies
     # n = sample size
@@ -126,23 +132,47 @@ def calculate_expected_genotypic_frequencies(allele_freqs, n):
             allele1 = alleles[i]
             allele2 = alleles[j]
             if i == j:
+                # *************************************************************************
+                # -------------------------------------------------------------------------
+                # THERE IS A BUG HERE THAT YOU NEED TO FIX
                 expected_frequencies[allele1 + allele2] = allele_freqs[allele1] * 2  # Expected frequency for the homozygous genotype (e.g., AA)
+                # -------------------------------------------------------------------------
+                # *************************************************************************
+
             else:
-                expected_frequencies[allele1 + allele2] = allele_freqs[allele1] * allele_freqs[allele2]  # Expected frequency for the heterozygous genotype (e.g., AC)
-            expected_genotypes[allele1 + allele2] = expected_frequencies[allele1 + allele2] * n
+                # *************************************************************************
+                # -------------------------------------------------------------------------
+                # THERE IS A BUG HERE THAT YOU NEED TO FIX
+               expected_frequencies[allele1 + allele2] = allele_freqs[allele1] * allele_freqs[allele2]  # Expected frequency for the heterozygous genotype (e.g., AC)
+                # -------------------------------------------------------------------------
+                # *************************************************************************
 
-    # *** print expected number of each genotype (raw number)
+            # *************************************************************************
+            # -------------------------------------------------------------------------
+            # THERE IS A BUG HERE THAT YOU NEED TO FIX
+            expected_genotypes[allele1 + allele2] = expected_frequencies[allele1 + allele2] * (n / 2)
+            # -------------------------------------------------------------------------
+            # *************************************************************************
 
-    # *** print expected genotypic frequencies
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the observed genotype numbers (number of individuals) here
+    print("text for printing observed genotype numbers")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
+
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the observed genotype frequencies here
+    print("text for printing observed genotype frequencies")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
 
     return expected_genotypes, expected_frequencies  # Return the dictionary of expected genotypic frequencies
 
 # -------------------------------------------------------------------------
 
 # Function to perform chi-square test to compare observed and expected frequencies
-# *** THERE IS ONE 'BUG' IN THE FOLLOWING FUNCTION *** #
-## **** It is your job to find them and fix them! **** ##
-# *** YOU NEED TO PRINT THE CHI-SQUARED VALUE *** #
 def chi_square_test(observed, expected):
     observed_values = list(observed.values())  # Convert observed genotype counts to a list
     print(observed_values)
@@ -154,9 +184,19 @@ def chi_square_test(observed, expected):
     # Calculate chi-squared statistic
     chi2_stat = 0
     for i in range(0,len(observed_values)):
-        chi2_stat += (((observed_values[i] - expected_values[i]) ** 2) / expected_values[i])
+        # *************************************************************************
+        # -------------------------------------------------------------------------
+        # THERE IS A BUG HERE THAT YOU NEED TO FIX
+        chi2_stat += (((observed_values[i] + expected_values[i]) ** 2) / expected_values[i])
+        # -------------------------------------------------------------------------
+        # *************************************************************************
 
-    # *** print chi2_stat
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the chi-squared value
+    print("text for printing chi-squared value")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
 
 
     return chi2_stat  # Return the chi-squared statistic
@@ -173,15 +213,28 @@ def main(fasta_file, position):
     expected_genotypes, expected_genotype_frequencies = calculate_expected_genotypic_frequencies(allele_frequencies, n_seq)  # Calculate expected genotypic frequencies
 
     chi2_stat = chi_square_test(observed_genotypes, expected_genotypes)  # Calculate the chi-squared value
-    
+
     # Calculate p-value from chi-squared test (with 1 degree of freedom for HWE test)
     p_value = chi2.sf(chi2_stat, 1)
 
 
-    # Print p-value
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the p-value value
+    print("text for printing p-value")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
 
-    # Print an interpretation for the p-value
 
+    # *************************************************************************
+    # -------------------------------------------------------------------------
+    # Print the interpretation of the p-value
+    if p_value > 0.05:
+        print("insert interpretation of p-value <0.05 here")
+    else:
+        print("insert interpretation of p-value >0.05 here")
+    # -------------------------------------------------------------------------
+    # *************************************************************************
 
 # Script entry point
 if __name__ == "__main__":

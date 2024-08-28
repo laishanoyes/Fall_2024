@@ -1,0 +1,88 @@
+# Bash Script: Basic Introduction to the command line
+# Author: Your Name
+# Date: August 24, 2023
+
+# 1. Seeing Current Directory (a directory is a file)
+## First, let's do this in finder or the document search tool
+pwd
+
+# 2. Changing Directories
+## First, let's do this in finder or the document search tool
+cd /
+### This took me to my "root" directory
+pwd
+## Let's instead go to our "home" directory
+cd ~
+pwd
+
+# 3. Go back a directory
+pwd
+cd ..
+pwd
+
+# 4. See the contents of your current directory
+cd ~
+ls
+
+# 4. Creating Directories
+mkdir new_directory
+ls
+
+# 4. Create a file
+## I will start by showing you how to create a text file in nano
+## However, I encourage you to explore other text editing software
+## Watch the "TextEditing" video on Canvas (under Media Gallery)
+nano new_python_file.py
+## While directories don't have suffixes, files should
+ls
+## Try opening it in a different text editor
+
+# ********************************** #
+## ** THE FOLLOWING IS IN PYTHON ** ##
+# Assigning Variables
+name = "Steph"
+age = 34
+
+# Printing variables
+print(name)
+print(age)
+
+# Print variables with a message
+print("Hello, " + name + ", you are " + age + " years old.")
+## Why didn't this work??
+## Variables can be of different types
+type(name)
+type(age)
+### A string is a sequence of characters
+### An int is a whole number
+age_string = str(age)
+type(age_string)
+print("Hello, " + name + ", you are " + age_string + " years old.")
+
+# Performing Basic Arithmetic
+earth_days_in_a_year = 365
+mercury_days_in_a_year = 88
+age_days = earth_days_in_a_year * 34
+mercury_age = age_days / 88
+print("You have lived for approximiately " + str(age_days) + " days.")
+print("You would be " + str(mercury_age) + " years old on Mercury.")
+
+# You can also have the user provide information for a variable
+gene_name = input("Provide the gene name: ")
+gene_seq = input("Provide the gene sequence: ")
+
+# Python has inherant "methods" you can use
+# Here is one called input that allows the user to provide content that gets assigned to a variable
+name = input("What is your name? ")
+# Here is one called len that measures the length of a string (number of characters)
+gene_length = len(gene_seq)
+# This is the number of nucleotides in a gene.
+# However, is DNA single or double stranded?
+# How many total nucleotides are at this region if you consider both sides of the DNA molecule?
+nucs = gene_length * 2
+# How many base pairs are there in this gene? How would you calculate it?
+bp = gene_length
+# Assuming this is a protein-coding gene, how many amino acids are in the translated protein?
+aa = gene_length / 3
+
+

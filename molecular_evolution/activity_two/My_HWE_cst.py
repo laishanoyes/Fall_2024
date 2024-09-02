@@ -41,7 +41,7 @@ IUPAC_CODES = {
 # Function to parse the FASTA file and extract sequences
 def parse_fasta(fasta_file):
     sequences = []  # Initialize a list to store sequences
-	with open(fasta_file, 'r') as file:  # Open the FASTA file for reading
+    with open(fasta_file, 'r') as file:  # Open the FASTA file for reading
         seq = ''  # Initialize an empty string to store a sequence
         for line in file:  # Iterate through each line in the file
             line = line.strip()  # Remove leading/trailing whitespace
@@ -53,8 +53,8 @@ def parse_fasta(fasta_file):
                 seq += line  # Append the line to the current sequence
         if seq:  # Add the last sequence if it exists
             sequences.append(seq)
-	return sequences  # Return the list of sequences
-	
+    return sequences  # Return the list of sequences
+
 
 # Function to calculate allele frequencies at a specified position
 def get_allele_frequencies(sequences, position):
@@ -69,9 +69,9 @@ def get_allele_frequencies(sequences, position):
                     alleles[base] = 1
         else:
             if allele in alleles:  # Check if the allele is already in the dictionary
-                alleles[allele] += 2  # Increment the count for this allele
+                alleles[allele] += 1  # Increment the count for this allele
             else:
-                alleles[allele] = 2  # Initialize the count for this allele
+                alleles[allele] = 1  # Initialize the count for this allele
     total_alleles = sum(alleles.values())  # Calculate the total number of alleles
     frequencies = {allele: count / total_alleles for allele, count in alleles.items()}  # Calculate the frequency for each allele
 

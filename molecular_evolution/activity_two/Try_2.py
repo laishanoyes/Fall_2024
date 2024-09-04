@@ -78,7 +78,7 @@ def get_allele_frequencies(sequences, position):
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed allele frequencies here
-    print("The observed allele frequencies are: " + str(frequencies))
+    print("81: The observed allele frequencies are: " + str(frequencies))
     # -------------------------------------------------------------------------
     # *************************************************************************
 
@@ -103,14 +103,14 @@ def get_genotypic_frequencies(sequences, position):
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed genotype numbers (number of individuals) here
-    print("Observed genotype numbers: " + str(genotypes))
+    print("106 Observed genotype numbers: " + str(genotypes))
     # -------------------------------------------------------------------------
     # *************************************************************************
 
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed genotype frequencies here
-    print("Observed genotype frequencies: " + str(frequencies))
+    print("113 Observed genotype frequencies: " + str(frequencies))
     # -------------------------------------------------------------------------
     # *************************************************************************
 
@@ -122,7 +122,7 @@ def calculate_expected_genotypic_frequencies(allele_freqs, n):
     # Extract the present alleles and their frequencies
     # n = sample size
     alleles = list(allele_freqs.keys())
-
+    print(alleles)
     # Initialize a dictionary to store expected genotypic frequencies
     expected_frequencies = {}
     expected_genotypes = {}
@@ -130,12 +130,16 @@ def calculate_expected_genotypic_frequencies(allele_freqs, n):
     for i in range(len(alleles)):
         for j in range(i, len(alleles)):
             allele1 = alleles[i]
+            print(allele1)
             allele2 = alleles[j]
+            print(allele2)
             if i == j:
                 # *************************************************************************
                 # -------------------------------------------------------------------------
                 # THERE IS A BUG HERE THAT YOU NEED TO FIX
-                expected_frequencies[allele1 + allele2] = allele_freqs[allele1] * 2  # Expected frequency for the homozygous genotype (e.g., AA)
+                expected_frequencies[allele1 + allele2] = allele_freqs[allele1] * 2
+                print(expected_frequencies[allele1 + allele2], "=", allele_freqs[allele1], '*2')
+                # Expected frequency for the homozygous genotype (e.g., AA)
                 # -------------------------------------------------------------------------
                 # *************************************************************************
 
@@ -143,28 +147,31 @@ def calculate_expected_genotypic_frequencies(allele_freqs, n):
                 # *************************************************************************
                 # -------------------------------------------------------------------------
                 # THERE IS A BUG HERE THAT YOU NEED TO FIX
-               expected_frequencies[allele1 + allele2] = allele_freqs[allele1] * allele_freqs[allele2]  # Expected frequency for the heterozygous genotype (e.g., AC)
-                # -------------------------------------------------------------------------
-                # *************************************************************************
+               expected_frequencies[allele1 + allele2] = allele_freqs[allele1] * allele_freqs[allele2]
+               print(expected_frequencies[allele1 + allele2], '=', allele_freqs[allele1], '*', allele_freqs[allele2])
+               # Expected frequency for the heterozygous genotype (e.g., AC)
+               # -------------------------------------------------------------------------
+               # *************************************************************************
 
             # *************************************************************************
             # -------------------------------------------------------------------------
             # THERE IS A BUG HERE THAT YOU NEED TO FIX
             expected_genotypes[allele1 + allele2] = expected_frequencies[allele1 + allele2] * (n / 2)
+            print(expected_genotypes[allele1 + allele2], '=', expected_frequencies[allele1 + allele2], '*', (n / '2'))
             # -------------------------------------------------------------------------
             # *************************************************************************
 
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed genotype numbers (number of individuals) here
-    print("Expected genotype numbers: ")
+    print("160 Expected genotype numbers: ", expected_genotypes)
     # -------------------------------------------------------------------------
     # *************************************************************************
 
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the observed genotype frequencies here
-    print("Expected genotype frequencies: ")
+    print("167 Expected genotype frequencies: ", expected_frequencies)
     # -------------------------------------------------------------------------
     # *************************************************************************
 
@@ -175,12 +182,12 @@ def calculate_expected_genotypic_frequencies(allele_freqs, n):
 # Function to perform chi-square test to compare observed and expected frequencies
 def chi_square_test(observed, expected):
     observed_values = list(observed.values())  # Convert observed genotype counts to a list
-    print(observed_values)
+    print("178 Observed values:", observed_values)
     expected_values = list(expected.values())  # Convert expected genotype frequencies to a list
-    print(expected_values)
+    print("180 expected values: ", expected_values)
 
     total = sum(observed_values)  # Calculate the total number of observed genotypes
-    
+    print(total)
     # Calculate chi-squared statistic
     chi2_stat = 0
     for i in range(0,len(observed_values)):
@@ -194,7 +201,7 @@ def chi_square_test(observed, expected):
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the chi-squared value
-    print("text for printing chi-squared value")
+    print("197 text for printing chi-squared value", chi2_stat)
     # -------------------------------------------------------------------------
     # *************************************************************************
 
@@ -221,7 +228,7 @@ def main(fasta_file, position):
     # *************************************************************************
     # -------------------------------------------------------------------------
     # Print the p-value value
-    print("text for printing p-value")
+    print("224 text for printing p-value")
     # -------------------------------------------------------------------------
     # *************************************************************************
 
@@ -230,9 +237,9 @@ def main(fasta_file, position):
     # -------------------------------------------------------------------------
     # Print the interpretation of the p-value
     if p_value > 0.05:
-        print("insert interpretation of p-value <0.05 here")
+        print("233 insert interpretation of p-value <0.05 here")
     else:
-        print("insert interpretation of p-value >0.05 here")
+        print("235 insert interpretation of p-value >0.05 here")
     # -------------------------------------------------------------------------
     # *************************************************************************
 

@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from sorting_algorithms import (
     bubble_sort,
     shaker_sort,
-    counting_sort,
     merge_sort,
     quick_sort,
     mod_quick_sort
@@ -30,7 +29,6 @@ def test_sorting_algorithms(data_generator, sizes):
         comparisons = {
             "BubbleSort": bubble_sort(data.copy()),
             "ShakerSort": shaker_sort(data.copy()),
-            "CountingSort": counting_sort(data.copy()),
             "MergeSort": merge_sort(data.copy()),
             "QuickSort": quick_sort(data.copy(), 0, size - 1),
             "ModQuickSort": mod_quick_sort(data.copy(), 0, size - 1),
@@ -73,9 +71,10 @@ def run_tests_and_plot():
     plt.tight_layout()
     plt.savefig("sorting_algorithms_performance.png")
     plt.show()
-
+    try:
     # Save log-transformed data to Excel
-    random_df_log.to_excel("random_data_comparisons_log.xlsx", index=True)
-    mostly_sorted_df_log.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)
-
+        random_df_log.to_excel("random_data_comparisons_log.xlsx", index=True)
+        mostly_sorted_df_log.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)
+    except Exception as e:
+        print(f"error saving Excel files: {e}:")
 run_tests_and_plot()

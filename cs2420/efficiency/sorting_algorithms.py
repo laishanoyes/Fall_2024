@@ -37,8 +37,10 @@ def counting_sort(L):
     for i in L:
         F[i] += 1
     k = 0
-    for value, count in enumerate(F):
-        for _ in range(count):
+    for i in range(len(F)):
+        value = i
+        count = F[i]
+        for j in range(count):
             comparisons += 1
             L[k] = value
             k += 1
@@ -75,11 +77,10 @@ def quick_sort(L, low, high):
     if high - low + 1 <= 1:
         return 0
     comparisons = 0
-    pivot = L[low]
     lmgt = low + 1
     for i in range(low + 1, high + 1):
         comparisons += 1
-        if L[i] <= pivot:
+        if L[i] <= L[low]:
             L[i], L[lmgt] = L[lmgt], L[i]
             lmgt += 1
     pivotindex = lmgt - 1
@@ -94,11 +95,10 @@ def mod_quick_sort(L, low, high):
     comparisons = 0
     mid = (low + high) // 2
     L[low], L[mid] = L[mid], L[low]
-    pivot = L[low]
     lmgt = low + 1
     for i in range(low + 1, high + 1):
         comparisons += 1
-        if L[i] < pivot:
+        if L[i] < L[low]:
             L[i], L[lmgt] = L[lmgt], L[i]
             lmgt += 1
     pivotindex = lmgt - 1

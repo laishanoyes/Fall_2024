@@ -49,15 +49,14 @@ def CountingSort(L):
 def MergeSort(L):
     if len(L) <= 1: 
         return
-    comparisons = 0
     half = len(L)//2
     A = L[:half]
     B = L[half:]
-    comparisons = merge_sort(A) + merge_sort(B)
+    comparisons = MergeSort(A) + MergeSort(B)
     i=j=k=0
     while i< len(A) and j < len(B):
+        comparisons += 1
         if A[i] <= B[j]:
-            comparisons += 1
             L[k] = A[i]
             i += 1
             k += 1

@@ -9,7 +9,7 @@ from sorting_algorithms import (
     merge_sort,
     quick_sort,
     mod_quick_sort
-)
+    )
 
 # Generate random data
 def make_random_data(size):

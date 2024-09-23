@@ -67,10 +67,11 @@ def RunTests_MakeTable():
     random_df_log = np.log2(random_df)
     mostly_sorted_df_log = np.log2(mostly_sorted_df)
 
-#    random_df_log.to_excel("random_data_comparisons_log.xlsx", index=True)
-#    mostly_sorted_df_log.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)
-    random_df.to_excel("random_data_comparisons.xlsx", index=True)
-    mostly_sorted_df.to_excel("mostly_sorted_data_comparisons.xlsx", index=True)
+    random_df_log_formatted = random_df_log.map(lambda x: f"{x:02.2f}")
+    mostly_sorted_df_log_formatted = mostly_sorted_df_log.map(lambda x: f"{x:02.2f}")
+
+    random_df_log_formatted.to_excel("random_data_comparisons_log.xlsx", index=True)
+    mostly_sorted_df_log_formatted.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)
 RunTests_MakeTable()
 
 

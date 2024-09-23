@@ -64,8 +64,8 @@ def RunTests_MakeTable():
     random_df.index = [i for i in range(3, 12)]
     mostly_sorted_df.index = [i for i in range(3, 12)]
 
-    random_df_log = np.log(random_df)
-    mostly_sorted_df_log = np.log(mostly_sorted_df)
+    random_df_log = np.log2(random_df)
+    mostly_sorted_df_log = np.log2(mostly_sorted_df)
 
     random_df_log.to_excel("random_data_comparisons_log.xlsx", index=True)
     mostly_sorted_df_log.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)

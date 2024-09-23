@@ -39,6 +39,7 @@ def counting_sort(L):
     k = 0
     for value, count in enumerate(F):
         for _ in range(count):
+            comparisons += 1
             L[k] = value
             k += 1
     return comparisons

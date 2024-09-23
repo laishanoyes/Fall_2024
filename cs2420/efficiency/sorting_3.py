@@ -1,6 +1,3 @@
-#Loop through each function
-#Count compares
-#for counting sort count the moves
 #test on lists ranging from size 8 to size 2K by powers of two [8, 16, 31, 64, 128, 256, 512, 1k, 2k
 
 #set recursion limit
@@ -72,6 +69,7 @@ def RunTests_MakeTable():
 
     random_df_log_formatted.to_excel("random_data_comparisons_log.xlsx", index=True)
     mostly_sorted_df_log_formatted.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)
+
 RunTests_MakeTable()
 
 

@@ -54,22 +54,23 @@ def TestAlgs(new_list, sizes):
     return results
 
 def RunTests_MakeTable():
-    sizes = [2**i for i in range(3,12)]
+    sizes = [2**i for i in range(3,13)]
     random_results = TestAlgs(MakeRandomData, sizes)
     mostly_sorted_results = TestAlgs(MakeSortedData, sizes)
 
     random_df = pd.DataFrame(random_results).T
     mostly_sorted_df = pd.DataFrame(mostly_sorted_results).T
 
-    random_df.index = [i for i in range(3, 12)]
-    mostly_sorted_df.index = [i for i in range(3, 12)]
+    random_df.index = [i for i in range(3, 13)]
+    mostly_sorted_df.index = [i for i in range(3, 13)]
 
     random_df_log = np.log2(random_df)
     mostly_sorted_df_log = np.log2(mostly_sorted_df)
 
-    random_df_log.to_excel("random_data_comparisons_log.xlsx", index=True)
-    mostly_sorted_df_log.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)
-
+#    random_df_log.to_excel("random_data_comparisons_log.xlsx", index=True)
+#    mostly_sorted_df_log.to_excel("mostly_sorted_data_comparisons_log.xlsx", index=True)
+    random_df.to_excel("random_data_comparisons.xlsx", index=True)
+    mostly_sorted_df.to_excel("mostly_sorted_data_comparisons.xlsx", index=True)
 RunTests_MakeTable()
 
 
